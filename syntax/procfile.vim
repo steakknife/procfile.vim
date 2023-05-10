@@ -14,9 +14,8 @@ syn region procfileLine    start='^'      end='$' oneline contains=procfileComme
 syn region procfileComment start='#'      end='$' oneline contained
 syn region procfileBundle  start='bundle' end='$' oneline contained contains=procfileEnvSetting,procfileComment,procfileVariable
 
-syn match procfileName    /^\w\+:/ contained contains=procfileInvalidName,procfileValidName 
-syn region procfileInvalidName start='^' end=':'                          oneline contained
-syn region procfileValidName   start='^' end='\(web\|_worker\|_handler\|_scheduler\|_listener\):' oneline contained
+syn match procfileName    /^\w\+:/ contained contains=procfileValidName
+syn region procfileValidName   start='^' end='\([^:\s]+):' oneline contained
 
 syn region procfileEnv     start='env' end='$' oneline contained contains=procfileBundle,procfileEnvSetting,procfileEnvProg transparent
 syn keyword procfileEnvProg env contained
@@ -33,7 +32,6 @@ hi def link procfileEnvOperator   Operator
 hi def link procfileEnvProg       Identifier
 hi def link procfileEnvSetting    Type
 hi def link procfileVariable      Type
-hi def link procfileInvalidName   DiffDelete
 hi def link procfileName          Special
 hi def link procfileValidName     Special
 
